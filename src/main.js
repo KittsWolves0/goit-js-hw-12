@@ -40,11 +40,21 @@ async function hendleSearch(event) {
             gallery.innerHTML = "";
             return
             }
+
+       
+
         renderGallery(data.hits);
         
         loadBtn.classList.remove("is-hiden");
         localStorage.setItem("searchKey", query);
-
+        const maxPage = Math.ceil(data.totalHits / maxItem);
+        if (page === maxPage) {
+        loadBtn.classList.add("is-hiden");
+        iziAlert("#6C8CFF",
+            "We're sorry, but you've reached the end of search results.");
+        loadBtn.classList.add("is-hiden");
+            return
+        }
 
     } catch (err) {
         alert(`${err.message}`)
