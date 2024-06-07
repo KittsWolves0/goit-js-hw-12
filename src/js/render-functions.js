@@ -1,12 +1,15 @@
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+
 export const gallery = document.querySelector(".gallery");
 let lightbox;
 
 
 export const renderGallery = (arr) => {
-  gallery.innerHTML = markupGallery(arr);
+  gallery.insertAdjacentHTML("beforeend", markupGallery(arr));
   if (lightbox) {
   lightbox.refresh();
   } else {
@@ -49,3 +52,11 @@ const markupGallery = (arr) =>  {
 }
 
 
+export const iziAlert = (color, message) => {
+  iziToast.show({
+    position: "topRight",
+    color,
+    messageColor: "#FAFAFB",
+    message
+})
+}

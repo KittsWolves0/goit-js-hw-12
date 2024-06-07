@@ -1,15 +1,24 @@
+import axios from "axios";
+
 const BASE_URL = "https://pixabay.com/api/";
+export const maxItem = 15;
 
+export const fetchResearch = (query, page) => {
 
-export const fetchResearch = (params) => {
-    return fetch(`${BASE_URL}?${params}`)
-    .then(res => {
-        if (!res.ok) {
-            throw new Error(res.status)
+    try {
+    const result = axios(BASE_URL, {
+        params: {
+        key: "44202193-f248306df09f9efdc8529d868",
+        q: query,
+        image_type: "photo",
+        orientation: "horizontal",
+        safesearch: "true",
+        page,
+        per_page: maxItem,
         }
-        return res.json();
     })
-    .catch(error => {
-        console.log(error);
-    })
+    return result;
+    } catch (err) {
+        alert(err.message)
+    }
 };
